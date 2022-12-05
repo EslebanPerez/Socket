@@ -1,6 +1,8 @@
 
 exports = module.exports = function(io){
-  io.on('connection', (socket) => {
+  const adminNameSpace = io.of('/admin');
+
+  adminNameSpace.on('connection', (socket) => {
     console.log('a user connected');
   
     socket.on('disconnect', () => {
@@ -9,7 +11,7 @@ exports = module.exports = function(io){
 
     socket.on('chat message', (msg) => {
       console.log('message: ' + msg);
-      io.emit('chat message', msg);
+      adminNameSpace.emit('chat message', msg);
     });
   });
 
