@@ -18,6 +18,12 @@ exports = module.exports = function(io){
       console.log('message: ' + data.msg );
       adminNameSpace.in(data.room).emit('chat message', data.msg);
     });
+
+    socket.on('send message to all', (data) => {
+      console.log('message: ' + data.msg );
+      adminNameSpace.in('executive').in('engineer').emit('chat message', data.msg);
+    });
+    
   });
 
 }
