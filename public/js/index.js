@@ -10,10 +10,12 @@ var messages = document.getElementById('messages');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
 
+const room = 'executive'
+
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   if (input.value) {
-    socket.emit('chat message', input.value);
+    socket.emit('chat message', { msg: input.value, room });
     input.value = '';
   }
 });
@@ -25,3 +27,7 @@ socket.on('chat message', function(msg) {
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight);
 });
+
+socket.on ('connect', () => {
+  socket.emit('join', { room })
+})
