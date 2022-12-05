@@ -10,12 +10,12 @@ var messages = document.getElementById('messages');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
 
-const room = 'executive'
+const room = 'executive' // Nombre del room
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   if (input.value) {
-    socket.emit('chat message', { msg: input.value, room });
+    socket.emit('chat message', { msg: input.value, room }); // room: room
     input.value = '';
   }
 });
